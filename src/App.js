@@ -105,7 +105,7 @@ function App() {
         <div className="Main">
           <div className="main-content">
             <div className="cards">
-                return <Menu categories={load.categories} addProduct={addProduct} />
+                <Menu categories={load.categories} addProduct={addProduct} />
             </div>
             <div className="basket">
                 <Panier activeProducts={products} removeProduct={removeProduct} addProduct={addProduct} />

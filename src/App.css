@@ -187,6 +187,19 @@ header {
 .basket-card button {
   font: 400 13.3333px Arial;
   text-align: center;
+  background: #00CDBD;
+  color: white;
+  margin: 10px;
+  border-radius: 5px;
+  padding: 1rem;
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.basket-card-empty button{
+  font: 400 13.3333px Arial;
+  text-align: center;
   cursor: not-allowed;
   background: #bac3c3;
   color: #8b9a9b;
@@ -196,7 +209,6 @@ header {
   border: none;
   font-weight: 700;
   font-size: 1rem;
-
 }
 
 .basket-empty {
