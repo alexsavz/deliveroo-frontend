@@ -5,6 +5,7 @@ const LittleCard = ({addProduct, meals}) => {
   return (
       <>
         {meals.map((meal) => {
+          console.log(meals);
           return (
             <div className="little-card-menu" key={meal.id} onClick={() => addProduct(meal.id)}>
               <div className="little-card" >

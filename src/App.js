@@ -61,7 +61,6 @@ function App() {
         category.meals.forEach(meal => {
           if(meal.id === itemId){
             meal.amount = 1;
-            meal.price = Number(meal.price);
             productsCopy.push(meal);
           }
         });
