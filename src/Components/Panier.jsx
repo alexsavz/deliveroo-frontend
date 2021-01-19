@@ -1,11 +1,14 @@
 import React from "react";
+import ProductLine from "./ProductLine";
 
-const Panier = () => {
+const Panier = ({removeProduct, activeProducts, addProduct}) => {
+
   return (
   <div className="basket-card">
     <button>Valider mon panier</button>
-    <div className="basket-empty">Votre panier est vide</div>
+    <ProductLine activeProducts={activeProducts} addProduct={addProduct} removeProduct={removeProduct} />
   </div>
+  
 );
 }
 

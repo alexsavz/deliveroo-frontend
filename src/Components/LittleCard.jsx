@@ -1,13 +1,13 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const LittleCard = ({meals}) => {
+const LittleCard = ({addProduct, meals}) => {
   return (
       <>
         {meals.map((meal) => {
           return (
-            <div className="little-card-menu">
-              <div className="little-card" key={meal.id}>
+            <div className="little-card-menu" key={meal.id} onClick={() => addProduct(meal.id)}>
+              <div className="little-card" >
                 <div className="little-card-text">
                   <h3>{meal.title}</h3>
                   <p>{meal.description}</p>

@@ -12,6 +12,7 @@ function App() {
 
   const [load, setLoad] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [products, setProducts] = useState([]);
 
   const fetchData = async () => {
     try {
@@ -27,30 +28,74 @@ function App() {
   useEffect(() => {
     fetchData();
   }, []);
-  
-  if(!isLoading){
-    console.log(load.categories.map((el,i) => {
-      return el.name;}));
+
+  // onClick to add a product name in the new array
+  const addProduct = (itemId) => {
+    console.log("Product added");
+
+    let isSelected = false;
+
+    products.forEach(product => {
+      if (product.id === itemId){
+        isSelected = true;
+      }
+    })
+ 
+    // L'item selectionné est confirmé dans le panier
+    if(isSelected){
+
+      const productsCopy = [...products];
+
+      // on le selectionne dans le tableau à l'aide de l'id
+      const productToFind = productsCopy.find((product) => 
+        product.id === itemId
+      );
+
+      productToFind.amount++;
+      setProducts(productsCopy);
+    }
+    // Si il n'est pas selectionné, l'item est push dans le tableau de pruduits du panier
+    else{
+      const productsCopy = [...products];
+      load.categories.forEach(category => {
+        category.meals.forEach(meal => {
+          if(meal.id === itemId){
+            meal.amount = 1;
+            meal.price = Number(meal.price);
+            productsCopy.push(meal);
+          }
+        });
+      });
+      setProducts(productsCopy);
+      } 
   }
 
-//   (12) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-// 0: {name: "Brunchs", meals: Array(2)}
-// 1: {name: "Petit déjeuner", meals: Array(8)}
-// 2: {name: "Viennoiseries et pains", meals: Array(12)}
-// 3: {name: "Salades", meals: Array(7)}
-// 4: {name: "Tartines froides", meals: Array(5)}
-// 5: {name: "Soupe & plats chauds", meals: Array(6)}
-// 6: {name: "Sandwichs baguette", meals: Array(0)}
-// 7: {name: "Desserts", meals: Array(0)}
-// 8: {name: "Boissons fraîches", meals: Array(0)}
-// 9: {name: "Epicerie bio", meals: Array(0)}
-// 10: {name: "Repas corporate", meals: Array(0)}
-// 11: {name: "Couverts", meals: Array(0)}
-// length: 12
-// __proto__: Array(0)
+  const removeProduct = (itemId) => {
+    
+    const productsCopy = [...products];
 
-// el.name
-// ["Brunchs", "Petit déjeuner", "Viennoiseries et pains", "Salades", "Tartines froides", "Soupe & plats chauds", "Sandwichs baguette", "Desserts", "Boissons fraîches", "Epicerie bio", "Repas corporate", "Couverts"]
+    let isSelected = false;
+    products.forEach(product => {
+      if (product.id === itemId){
+        isSelected = true;
+      }
+    })
+
+    if(isSelected){
+      const productToFind = productsCopy.find((product) => 
+        product.id === itemId
+      );
+
+      if(productToFind.amount > 0){
+        // productToFind.price = productToFind.price.toFixed(2);
+        productToFind.amount--;
+      setProducts(productsCopy);
+      }
+      
+    }
+  }
+
+  console.log(products);
 
   return (
     <div className="App">
@@ -61,11 +106,10 @@ function App() {
         <div className="Main">
           <div className="main-content">
             <div className="cards">
-              {load.categories.map((card,i) => {
-                return <Menu key={i} cardTitle={card.name} meals={card.meals} />;})}
+                return <Menu categories={load.categories} addProduct={addProduct} />
             </div>
             <div className="basket">
-                <Panier />
+                <Panier activeProducts={products} removeProduct={removeProduct} addProduct={addProduct} />
             </div>
           </div>
         </div>
