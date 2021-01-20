@@ -1,6 +1,5 @@
 .App {
   background-color: #ffffff;
-  min-height: 100vh;
   color: #2e3333;
   width: 100%;
   margin: 0 auto;
@@ -29,7 +28,7 @@ header {
   width: 60%;
 }
 .header-main {
-  width: 1200px;
+  max-width: 1200px;
   margin: 20px auto;
   display: flex;
   justify-content: space-between;
@@ -58,6 +57,7 @@ header {
 
 .Main {
   background-color: #F3F5F5;
+  width: 100%;
 }
 /* MENU */
 
@@ -82,13 +82,13 @@ header {
 }
 
 .menu-item {
-  min-width: 300px;
   /* border: 2px solid black; */
   display: flex;
   flex-wrap: wrap;
 }
 
 .little-card-menu {
+  min-width: 350px;
   width: 50%;
   margin-bottom: 20px;
 }
@@ -252,4 +252,21 @@ header {
 
 .total-price-dev p {
   margin: 2px;
+}
+
+@media (max-width: 992px) {
+
+  .App {
+    margin: 0;
+  }
+
+  .header-main {
+    align-items: center;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .main-content {
+    margin: 0;
+  }
 }
