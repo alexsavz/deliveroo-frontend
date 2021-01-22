@@ -15,7 +15,7 @@ const LittleCard = ({addProduct, meals}) => {
                   <div className="little-card-infos"><span className="price">{meal.price} €</span>{meal.popular && <span className="popular"><FontAwesomeIcon icon="star" />Populaire</span>}</div>
                 </div>
                 <div className="little-card-picture">
-                  <img src={meal.picture} alt=""/>
+                  <img src={meal.picture + "?width=192&height=192&fit=crop"} alt=""/>
                 </div>
               </div>  
             </div>
